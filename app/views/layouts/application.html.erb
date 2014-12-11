@@ -15,8 +15,6 @@
     <% flash.each do |name, msg| %>
       <%= content_tag(:div, msg, class: "alert alert-#{name}") %>
     <% end %>
-    <%= link_to "home", root_path %>
-    <%= link_to "Create New Habit", new_habit_path, class: "btn" %>
   </div>
 
   <%= yield %>

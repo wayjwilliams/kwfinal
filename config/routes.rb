@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
-  root 'pages#welcome'
+  #root 'pages#welcome'
 
-  get 'habits/index' => "habits#index"
+  root 'habits#index'
   get 'habits/new' => "habits#new", as: :new_habit
   post 'habits' => 'habits#create'
 
