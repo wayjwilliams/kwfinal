@@ -1,0 +1,14 @@
+<p>
+  <strong>Title</strong>
+  <%= @habit.name %>
+</p>
+
+<p>
+  <strong>Text</strong>
+  <%= @habit.description %>
+</p>
+
+<p>
+  <strong>Journal:</strong>
+  <%= render @habit.journals %>
+</p>

@@ -1,0 +1,10 @@
+<p>
+  <strong>Journal:</strong>
+  <%= journal.body %>
+</p>
+
+<p>
+  <%= link_to 'Delete Journal Entry', [journal.habit, journal],
+  method: :delete,
+  data: { confirm: 'Are you sure?'} %>
+</p>

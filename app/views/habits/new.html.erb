@@ -1,0 +1,21 @@
+<h1>Habits#new</h1>
+
+<div class= "container">
+  <%= simple_form_for @habit, html: { class: 'form-horizontal' },
+  wrapper: :horizontal_form,
+  wrapper_mappings: {
+    check_boxes: :horizontal_radio_and_checkboxes,
+    radio_buttons: :horizontal_radio_and_checkboxes,
+    file: :horizontal_file_input,
+    boolean: :horizontal_boolean
+    } do |f| %>
+    <%= f.error_notification %>
+    <%= f.input :name, hint: "What new habit do you want to learn?" %>
+    <%= f.input :mission_statement, as: :text, hint: "Why is it important to you?"%>
+    <%= f.input :description, as: :text, hint: "Describe what your process will be" %>
+    <%= f.input :frequency, collection: [:daily, :weekly, :monthly, ], label: "How often will you practice this new habit"%>
+    <%= f.input :duration, collection: 1..31, hint: "How many days/weeks/months will it take to become a habit?" %>
+    <%= f.submit %>
+    <% end %>
+  </div>
+  

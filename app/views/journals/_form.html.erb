@@ -1,0 +1,6 @@
+<%= simple_form_for([habit, habit.journals.build]) do |f| %>
+<%= f.text_area :body, label: "Journal" %>
+<%= f.submit %>
+
+
+<% end %>
