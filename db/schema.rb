@@ -11,12 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141211084726) do
+ActiveRecord::Schema.define(version: 20141211092544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "habits", force: true do |t|
+    t.string   "name"
+    t.string   "mission_statement"
+    t.string   "description"
+    t.integer  "duration"
+    t.string   "frequency"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

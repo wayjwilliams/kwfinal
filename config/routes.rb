@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root 'pages#welcome'
 
+  get 'habits/index' => "habits#index"
+  get 'habits/new' => "habits#new", as: :new_habit
+  post 'habits' => 'habits#create'
+
   resources :habits do
     resources :journals
   end
