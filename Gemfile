@@ -42,6 +42,8 @@ gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.1.0'
 gem 'simple_form', '3.1.0.rc2'
 gem 'pry'
+gem 'kaminari'
+gem 'kaminari-bootstrap'
 
 group :production do
   gem 'rails_12factor'

@@ -1,7 +1,8 @@
 class HabitsController < ApplicationController
+  before_action :authenticate_user!
 
     def index
-      @habits = Habit.all
+      @habits = Habit.order('created_at DESC').page(params[:page]).per(1)
     end
 
     def new

@@ -1,23 +1,31 @@
 <h1>Your Habits</h1>
-<%= link_to "Create New Habit", new_habit_path, class: "btn btn-default" %>
-<div class='container'>
+<div class='container-fluid'>
+  <div class='row'>
+
+    <div class="col-md-4">
+      <%= link_to "Create New Habit", new_habit_path, class: "btn btn-default" %>
+    </div>
+
+    <div class="col-md-4">
+      <%= paginate(@habits) %>
+    </div>
+    <div class="col-md-4">
+      <%= link_to "Create New Habit", new_habit_path, class: "btn btn-default" %>
+    </div>
+
+  </div>
   <div class='row'>
     <div class="col-md-4">
     <% @habits.each do |habit| %>
-    <p>
-      <strong>Habit</strong>
-      <%= habit.name %></p>
-    </p>
+    <h2>
+      <strong><%= habit.name %></strong>
+    </h2>
 
-    <p>
-      <strong>Why</strong>
-      <%= habit.mission_statement %>
-    </p>
+    <p><strong>Why?</strong></p>
+    <p><%= habit.mission_statement %></p>
 
-    <p>
-      <strong>Description</strong>
-      <%= habit.description %>
-    </p>
+    <p><strong>What?</strong></p>
+    <p><%= habit.description %></p>
 
     <p> I will update my journal on this habit <%= habit.frequency %> </p>
 
@@ -33,14 +41,19 @@
     </div>
 
     <div class="col-md-4">
-    <h4>Journal</h4>
+    <h4><%= habit.name %> Journal</h4>
     <% habit.journals.each do |journal| %>
     <p>
       <strong>Journal:</strong>
       <%= journal.body %>
     </p>
     <% end %>
-    <h4>Update Journal</h4>
+      <% if ((habit.journals.count.to_f / habit.duration.to_f) * 100).to_i < 100 %>
+        <h4>Update Journal</h4>
+      <% else %>
+        <h4>You're done!</h4>
+        <h6>(but you can keep journaling if you want)</h6>
+      <% end %>
     <p><%= render partial: "journals/form", locals: {habit: habit} %></p>
     <p><%= link_to 'Delete', habit_path(habit), class:"btn btn-danger",
     method: :delete, data: { confirm: "Are you sure?" } %></p>
