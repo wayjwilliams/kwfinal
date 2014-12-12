@@ -1,0 +1,61 @@
+<h1>What do you want to learn?</h1>
+<p>Here are a few templates to get you on your way!</p>
+<p>Choose a habit below and click the Create Habit button to get started</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+  <%= simple_form_for @habit, html: { class: 'form-horizontal' },
+  wrapper: :horizontal_form,
+  wrapper_mappings: {
+    check_boxes: :horizontal_radio_and_checkboxes,
+    radio_buttons: :horizontal_radio_and_checkboxes,
+    file: :horizontal_file_input,
+    boolean: :horizontal_boolean
+    } do |f| %>
+    <%= f.error_notification %>
+    <%= f.input :name, :input_html => { :value => "Drink 8 Glasses of Water per Day." }, hint: "What new habit do you want to learn?" %>
+    <%= f.input :mission_statement, :input_html => { :value => "I want to live a healthy life and this is a simple first step." }, hint: "Why is it important to you?"%>
+    <%= f.input :description, :input_html => { :value => "Over the next 14 days/weeks I will journal about developing this habit." }, hint: "Describe what your process will be" %>
+    <%= f.input :frequency, :input_html => { :value => "daily" }, label: "How often will you practice this new habit?"%>
+    <%= f.input :duration, :input_html => { :value => "14" }, hint: "How many days/weeks/months will it take to become a habit?" %>
+    <%= f.button :submit, class: "btn btn-success" %>
+    <% end %>
+  </div>
+  <div class="col-md-4">
+    <%= simple_form_for @habit, html: { class: 'form-horizontal' },
+    wrapper: :horizontal_form,
+    wrapper_mappings: {
+      check_boxes: :horizontal_radio_and_checkboxes,
+      radio_buttons: :horizontal_radio_and_checkboxes,
+      file: :horizontal_file_input,
+      boolean: :horizontal_boolean
+      } do |f| %>
+      <%= f.error_notification %>
+      <%= f.input :name, :input_html => { :value => "Practice Volunteering." }, hint: "What new habit do you want to learn?" %>
+      <%= f.input :mission_statement, :input_html => { :value => "I think giving back to the community is important, but I need to 'practice' it since I will rarely 'feel' like it." }, hint: "Why is it important to you?"%>
+      <%= f.input :description, :input_html => { :value => "Each month I will seek out an opportunity to serve in my community and will journal about it." }, hint: "Describe what your process will be" %>
+      <%= f.input :frequency, :input_html => { :value => "monthly" }, label: "How often will you practice this new habit?"%>
+      <%= f.input :duration, :input_html => { :value => "6" }, hint: "How many days/weeks/months will it take to become a habit?" %>
+      <%= f.button :submit, class: "btn btn-info" %>
+      <% end %>
+    </div>  <div class="col-md-4">
+      <%= simple_form_for @habit, html: { class: 'form-horizontal' },
+      wrapper: :horizontal_form,
+      wrapper_mappings: {
+        check_boxes: :horizontal_radio_and_checkboxes,
+        radio_buttons: :horizontal_radio_and_checkboxes,
+        file: :horizontal_file_input,
+        boolean: :horizontal_boolean
+        } do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :name, :input_html => { :value => "Learn how to jog." }, hint: "What new habit do you want to learn?" %>
+        <%= f.input :mission_statement, :input_html => { :value => "I need to get moving!" }, hint: "Why is it important to you?"%>
+        <%= f.input :description, :input_html => { :value => "Over the next month, I will journal about my efforts either jogging or reading at least one article about jogging per day." }, hint: "Describe what your process will be" %>
+        <%= f.input :frequency, :input_html => { :value => "daily" }, label: "How often will you practice this new habit?"%>
+        <%= f.input :duration, :input_html => { :value => "31" }, hint: "How many days/weeks/months will it take to become a habit?" %>
+        <%= f.button :submit, class: "btn btn-warning" %>
+        <% end %>
+      </div>
+</div>
+</div>

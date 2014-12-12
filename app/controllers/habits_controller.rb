@@ -9,6 +9,10 @@ class HabitsController < ApplicationController
       @habit = Habit.new
     end
 
+    def starters
+      @habit = Habit.new
+    end
+
     def show
       @habit = Habit.find(params[:id])
     end

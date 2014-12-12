@@ -3,14 +3,12 @@
   <div class='row'>
 
     <div class="col-md-4">
-      <%= link_to "Create New Habit", new_habit_path, class: "btn btn-default" %>
+      <%= link_to "Create New Habit", new_habit_path, class: "btn btn-primary" %>
+      <%= link_to "HALP!", habits_starters_path, class: "btn btn-warning" %>
     </div>
 
     <div class="col-md-4">
       <%= paginate(@habits) %>
-    </div>
-    <div class="col-md-4">
-      <%= link_to "Create New Habit", new_habit_path, class: "btn btn-default" %>
     </div>
 
   </div>
@@ -38,6 +36,8 @@
       <%= "months." %>
       <% end %>
     </p>
+    <p><%= link_to 'Delete', habit_path(habit), class:"btn btn-danger btn-xs",
+    method: :delete, data: { confirm: "Are you sure?" } %></p>
     </div>
 
     <div class="col-md-4">
@@ -55,24 +55,26 @@
         <h6>(but you can keep journaling if you want)</h6>
       <% end %>
     <p><%= render partial: "journals/form", locals: {habit: habit} %></p>
-    <p><%= link_to 'Delete', habit_path(habit), class:"btn btn-danger",
-    method: :delete, data: { confirm: "Are you sure?" } %></p>
     <% end %>
   </div>
 
   <div class="col-md-4">
     <% @habits.each do |habit| %>
-    <% if ((habit.journals.count.to_f / habit.duration.to_f) * 100).to_i < 100 %>
-    <h4><%= habit.name %></h4>
-    <div class="progress">
-      <div class="progress-bar" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100"
-      style="width: <%= (habit.journals.count.to_f / habit.duration.to_f) * 100 %>%">
-      <%= ((habit.journals.count.to_f / habit.duration.to_f) * 100).to_i %>%
-    </div>
-  </div>
-  <% else %>
-  <h3><i class="fa fa-check-square fa-lg"></i><%= habit.name %></h3>
-  <% end %>
+      <% if habit.journals.count.to_f > 0 %>
+        <% if ((habit.journals.count.to_f / habit.duration.to_f) * 100).to_i < 100 %>
+          <h4><%= habit.name %></h4>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100"
+              style="width: <%= (habit.journals.count.to_f / habit.duration.to_f) * 100 %>%">
+              <%= ((habit.journals.count.to_f / habit.duration.to_f) * 100).to_i %>%
+            </div>
+          </div>
+        <% else %>
+      <h3><i class="fa fa-check-square fa-lg"></i><%= habit.name %></h3>
+      <% end %>
+    <% else %>
+    <% nil %>
+    <% end %>
 </div>
 
   <% end %>

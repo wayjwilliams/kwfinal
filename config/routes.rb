@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'habits#index'
   get 'habits/new' => "habits#new", as: :new_habit
   post 'habits' => 'habits#create'
+  get 'habits/starters' => "habits#starters"
 
   resources :habits do
     resources :journals
