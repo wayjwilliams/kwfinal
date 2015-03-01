@@ -1,5 +1,5 @@
 class HabitsController < ApplicationController
-  before_action :correct_user, only: [:show, :edit, :update]
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
     def index
@@ -11,7 +11,7 @@ class HabitsController < ApplicationController
     end
 
     def starters
-      @habit = Habit.new
+      @habit = current_user.habits.build
     end
 
     def show
@@ -28,7 +28,6 @@ class HabitsController < ApplicationController
     end
 
     def destroy
-      @habit = Habit.find(params[:id])
       @habit.destroy
       redirect_to habits_path
     end
