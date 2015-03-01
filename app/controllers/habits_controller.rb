@@ -1,4 +1,5 @@
 class HabitsController < ApplicationController
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
     def index
@@ -6,7 +7,7 @@ class HabitsController < ApplicationController
     end
 
     def new
-      @habit = Habit.new
+      @habit = current_user.habits.build
     end
 
     def starters
@@ -18,7 +19,7 @@ class HabitsController < ApplicationController
     end
 
     def create
-      @habit = Habit.new(params.require(:habit).permit(:name, :mission_statement, :description, :frequency, :duration, :text))
+      @habit = current_user.habits.build(habit_params)
       if @habit.save!
         redirect_to habits_path
       else
@@ -32,4 +33,17 @@ class HabitsController < ApplicationController
       redirect_to habits_path
     end
 
+    private
+    def set_pint
+      @habit = Habit.find(params[:id])
+    end
+
+    def correct_user
+      @habit = current_user.habits.find_by(id: params[:id])
+      redirect_to habits_path, notice: "Not authorized to edit this pint" if @pint.nil?
+    end
+
+    def habit_params
+      params.require(:habit).permit(:name, :mission_statement, :description, :frequency, :duration, :text)
+    end
 end
